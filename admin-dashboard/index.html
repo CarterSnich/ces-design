@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="preload" href="./../assets/fonts/nunito-v25-latin/nunito-v25-latin-regular.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="./../assets/fonts/nunito-v25-latin/nunito-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="./../assets/css/base.css">
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            font-size: var(--fs-normal);
+
+            display: flex;
+            flex-direction: row;
+        }
+
+        /* #side-nav */
+        #side-nav {
+            min-width: 320px;
+            background-color: black;
+            color: white;
+            padding: 1.25rem;
+
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* .side-nav-header */
+        .side-nav-header>.logo-wrapper {
+            text-align: center;
+        }
+
+        .side-nav-header>.logo-wrapper>img {
+            height: 72px;
+            aspect-ratio: 1;
+        }
+
+        .side-nav-header>h1 {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            font-size: var(--fs-medium) !important;
+            font-weight: normal;
+        }
+
+        /* .side-nav-links */
+        .side-nav-links {
+            padding-inline: 1.75rem;
+            list-style: none;
+
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+
+            margin-top: 2.25rem;
+        }
+
+        .side-nav-links>li {
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+            overflow-x: hidden;
+        }
+
+
+        .side-nav-links>li::after {
+            content: "";
+            background-color: white;
+            width: 100%;
+            height: 2px;
+            transform: translate(-100%);
+            transition: transform .3s ease-in-out;
+        }
+
+        .side-nav-links>li:hover::after {
+            transform: translate(0%);
+        }
+
+        /* .side-nav-links  > li > a */
+        .side-nav-links>li>a {
+            font-size: var(--fs-medium);
+            color: white;
+            text-decoration: none;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        .side-nav-links>li>a>span {
+            font-size: 1rem;
+
+        }
+
+        /* #logout-btn */
+        #logout-btn {
+            margin-top: auto;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            font-size: var(--fs-normal);
+            transition: color .3s ease-in-out;
+        }
+
+        #logout-btn:hover {
+            color: #ededed;
+        }
+
+        /* main */
+        main {
+            flex-grow: 1;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* top-nav */
+        #top-nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: .5rem;
+
+            background-color: #ededed;
+            box-shadow: 0px 4px 4px 0px #00000080;
+        }
+
+
+        #top-nav>h1 {
+            font-size: var(--fs-medium);
+            margin: 0;
+        }
+
+        /* #login-dropdown */
+        #login-dropdown {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            padding: .2rem;
+            margin: 0;
+            border: none;
+            border-radius: .25rem;
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+        /* #main */
+
+        #main {
+            flex-grow: 1;
+            padding: 2.25rem;
+            gap: 2.25rem;
+
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        /* #page-nav */
+        #page-nav {
+            box-shadow: 0px 4px 4px 0px #00000080;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: .25rem;
+            background-color: #ededed;
+        }
+
+        #page-nav>h2 {
+            margin: 0;
+        }
+
+        #page-nav>label[for=doc-search] {
+            display: flex;
+            flex-direction: row;
+            gap: .25rem;
+
+            padding: .25rem;
+            border: 1px solid black;
+            background-color: white;
+            border-radius: .25rem;
+        }
+
+        /* #college-selection */
+        #college-selection {
+            padding: .25rem 1.25rem;
+            border: 1px solid black;
+            border-radius: .25rem;
+
+            align-self: flex-start;
+        }
+
+        /* file tables */
+        #new-uploaded-files-wrapper,
+        #new-deleted-files-wrapper {
+            flex-grow: 1;
+        }
+
+        :is(#new-uploaded-files-wrapper,
+            #new-deleted-files-wrapper)>h3 {
+            background-color: #3d3ac6;
+            padding: .5rem .75rem;
+            border-radius: .75rem;
+            margin: 0;
+            width: fit-content;
+            margin-bottom: .75rem;
+        }
+
+
+        :is(#new-uploaded-files-wrapper,
+            #new-deleted-files-wrapper)>table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        :is(#new-uploaded-files-wrapper,
+            #new-deleted-files-wrapper) :is(table, th, td) {
+            border: 1px solid black;
+        }
+
+        :is(#new-uploaded-files-wrapper,
+            #new-deleted-files-wrapper) :is(th, td) {
+            padding: .25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <nav id="side-nav">
+
+        <div class="side-nav-header">
+            <div class="logo-wrapper">
+                <img src="./../assets/img/LNU-logo.png" alt="lnu-logo">
+            </div>
+            <h1>Community Extension &<br>Services Office</h1>
+        </div>
+
+        <ul class="side-nav-links">
+            <li>
+                <a href="#">
+                    <span>○</span>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>○</span>
+                    Users
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span>○</span>
+                    Documents
+                </a>
+            </li>
+        </ul>
+
+
+        <a href="#" id="logout-btn">Log out</a>
+
+    </nav>
+
+    <main>
+        <nav id="top-nav">
+            <h1>File Management System/User</h1>
+            <button id="login-dropdown">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+                    <rect x="0" y="0" width="24" height="24" fill="none" stroke="none" />
+                    <g fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path stroke-linecap="round" d="M7 18v-1a5 5 0 0 1 5-5v0a5 5 0 0 1 5 5v1" />
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 12a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z" />
+                        <circle cx="12" cy="12" r="10" />
+                    </g>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256">
+                    <rect x="0" y="0" width="256" height="256" fill="none" stroke="none" />
+                    <path fill="currentColor" d="M128 184a8.5 8.5 0 0 1-5.7-2.3l-80-80a8.1 8.1 0 0 1 11.4-11.4l74.3 74.4l74.3-74.4a8.1 8.1 0 0 1 11.4 11.4l-80 80a8.5 8.5 0 0 1-5.7 2.3Z" />
+                </svg>
+            </button>
+        </nav>
+
+        <div id="main">
+            <nav id="page-nav">
+                <h2>Documents</h2>
+
+                <label for="doc-search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                        <rect x="0" y="0" width="24" height="24" fill="none" stroke="none" />
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0-14 0m18 11l-6-6" />
+                    </svg>
+                    <input type="text" name="doc-search" id="doc-search" class="custom" placeholder="Search...">
+                </label>
+            </nav>
+
+            <select name="" id="college-selection">
+                <option value="">Graduate</option>
+                <option value="">Undergraduate</option>
+            </select>
+
+            <div id="new-uploaded-files-wrapper">
+                <h3>Newest Uploaded Files</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>File name</th>
+                            <th>Project name</th>
+                            <th>Uploaded</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                                Project Proposal
+                            </td>
+                            <td>
+                                Eco-system
+                            </td>
+                            <td>
+                                Juan de la Cruz
+                            </td>
+                            <td>
+                                Administrator
+                            </td>
+                            <td>
+                                Dec. 8, 2022 11:13 AM
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Project Proposal
+                            </td>
+                            <td>
+                                Eco-system
+                            </td>
+                            <td>
+                                Juan de la Cruz
+                            </td>
+                            <td>
+                                Administrator
+                            </td>
+                            <td>
+                                Dec. 8, 2022 11:13 AM
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Project Proposal
+                            </td>
+                            <td>
+                                Eco-system
+                            </td>
+                            <td>
+                                Juan de la Cruz
+                            </td>
+                            <td>
+                                Administrator
+                            </td>
+                            <td>
+                                Dec. 8, 2022 11:13 AM
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="new-deleted-files-wrapper">
+                <h3>Newest Deleted Files</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>File name</th>
+                            <th>Project name</th>
+                            <th>Uploaded</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>
+                                Project Proposal
+                            </td>
+                            <td>
+                                Eco-system
+                            </td>
+                            <td>
+                                Juan de la Cruz
+                            </td>
+                            <td>
+                                Administrator
+                            </td>
+                            <td>
+                                Dec. 8, 2022 11:13 AM
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Project Proposal
+                            </td>
+                            <td>
+                                Eco-system
+                            </td>
+                            <td>
+                                Juan de la Cruz
+                            </td>
+                            <td>
+                                Administrator
+                            </td>
+                            <td>
+                                Dec. 8, 2022 11:13 AM
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Project Proposal
+                            </td>
+                            <td>
+                                Eco-system
+                            </td>
+                            <td>
+                                Juan de la Cruz
+                            </td>
+                            <td>
+                                Administrator
+                            </td>
+                            <td>
+                                Dec. 8, 2022 11:13 AM
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+
+
+</body>
+
+</html>

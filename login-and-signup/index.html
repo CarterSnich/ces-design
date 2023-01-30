@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in page | CES</title>
+
+    <link rel="preload" href="./../assets/fonts/nunito-v25-latin/nunito-v25-latin-regular.woff" as="font" type="font/woff" crossorigin>
+    <link rel="preload" href="./../assets/fonts/nunito-v25-latin/nunito-v25-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+    <link rel="stylesheet" href="./../assets/css/base.css">
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            display: grid;
+            place-content: center;
+            place-items: center;
+            font-size: var(--fs-normal);
+        }
+
+        form {
+            border: 2px solid black;
+            border-radius: .75rem;
+            padding: 1.25rem 2.25rem;
+            min-width: 400px;
+
+
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+
+        }
+
+        header>.logo-wrapper {
+            text-align: center;
+        }
+
+        header>.logo-wrapper>img {
+            height: 72px;
+            aspect-ratio: 1;
+        }
+
+        header>h1 {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            font-size: var(--fs-medium) !important;
+            font-weight: normal;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .input-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .input-wrapper>div {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .input-wrapper>div>input {
+            padding: .25rem 1.25rem;
+            border: 1px solid black;
+            border-radius: .25rem;
+        }
+
+        .input-wrapper>div>input::placeholder {
+            font-style: italic;
+        }
+
+        .input-wrapper>button {
+            padding: .25rem 1.25rem;
+            border: 1px solid black;
+            border-radius: .25rem;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+        }
+
+        .links>a {
+            text-decoration: none;
+        }
+
+        footer {
+            display: flex;
+            flex-direction: column;
+            gap: .25rem;
+            text-align: center;
+        }
+
+        footer>span {
+            font-size: var(--fs-small);
+        }
+    </style>
+</head>
+
+<body>
+
+    <form action="">
+        <header>
+            <div class="logo-wrapper">
+                <img src="./../assets/img/LNU-logo.png" alt="lnu-logo">
+            </div>
+
+            <h1>
+                <span>Administrator</span>
+                <span>Log in</span>
+            </h1>
+        </header>
+
+        <main>
+            <div class="input-wrapper">
+                <div>
+                    <input type="text" name="username" id="username" placeholder="Username">
+                    <input type="password" name="password" id="password" placeholder="Password">
+                </div>
+                <label for="remember-login">
+                    <input type="checkbox" name="remember-login" id="remember-login">
+                    Remember me
+                </label>
+                <button type="submit">Log in</button>
+            </div>
+
+            <div class="links">
+                <a href="#">Log in as user?</a>
+                <a href="#">Forgot password?</a>
+            </div>
+        </main>
+
+        <footer>
+            <span>Leyte Normal University</span>
+            <span>All Rights Reserved</span>
+            <span>2023</span>
+        </footer>
+    </form>
+
+</body>
+
+</html>

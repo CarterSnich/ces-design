@@ -1,0 +1,35 @@
+:root {
+	--fs-medium: 1.25rem;
+	--fs-normal: 1rem;
+	--fs-small: 0.75rem;
+}
+
+@font-face {
+	font-family: "Nunito";
+	src: url("./../fonts/nunito-v25-latin/nunito-v25-latin-regular.woff") format("woff"), url("./../fonts/nunito-v25-latin/nunito-v25-latin-regular.woff") format("woff2");
+}
+
+* {
+	scroll-behavior: smooth;
+	box-sizing: border-box;
+	font-family: "Nunito", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:is(button:not(.custom), input:not([type="checkbox"]):not(.custom)) {
+	box-shadow: 2px 2px 4px 0px #00000030;
+	transition: all 0.3s ease-in-out;
+}
+
+:is(button:not(.custom), input:not([type="checkbox"]):not(.custom)):hover {
+	box-shadow: 0px 0px 4px 4px #00000030 !important;
+}
+
+:is(button:not(.custom), input:not([type="checkbox"]):not(.custom)):active {
+	box-shadow: 2px 2px 4px 0px inset #00000030 !important;
+}
+
+.custom {
+	outline: none;
+	border: none;
+	background-color: transparent;
+}
